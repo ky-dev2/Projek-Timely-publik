@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timely</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #444;
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .home-icon {
+      font-size: 5rem;
+      color: #74b9ff;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .welcome-text {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #2d3436;
+      margin: 0 0 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #636e72;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Footer Navbar */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #eee;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #666;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .navbar a i {
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+    }
+
+    .navbar a:hover {
+      color: #0984e3;
+      transform: translateY(-3px);
+    }
+
+    .navbar a.active {
+      color: #0984e3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Timely</h1>
+  </header>
+
+  <main>
+    <i class="fa-solid fa-house home-icon"></i>
+    <p class="welcome-text">Selamat Datang di Timely</p>
+    <p class="subtitle">Aplikasi sederhana untuk Timer, Pengingat, dan Catatan.</p>
+  </main>
+
+  <footer>
+    <nav class="navbar">
+      <a href="timer.html">
+        <i class="fa-solid fa-stopwatch"></i>
+        <span>Timer</span>
+      </a>
+      <a href="reminder.html">
+        <i class="fa-solid fa-bell"></i>
+        <span>Pengingat</span>
+      </a>
+      <a href="notes.html">
+        <i class="fa-solid fa-note-sticky"></i>
+        <span>Catatan</span>
+      </a>
+    </nav>
+  </footer>
+</body>
+</html>

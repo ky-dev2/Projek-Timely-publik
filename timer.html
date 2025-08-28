@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timely - Timer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #444;
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .timer-display {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #6c8eff;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .start { background: #6c8eff; color: white; }
+    .pause { background: #f39c12; color: white; }
+    .reset { background: #e74c3c; color: white; }
+
+    .controls button:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .input-time {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .input-time input {
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 80px;
+      text-align: center;
+    }
+
+    /* Footer Navbar */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #eee;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #666;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .navbar a i {
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+    }
+
+    .navbar a:hover {
+      color: #0984e3;
+      transform: translateY(-3px);
+    }
+
+    .navbar a.active {
+      color: #0984e3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Timely</h1>
+  </header>
+
+  <!-- Timer Section -->
+  <main>
+    <div class="input-time">
+      <label for="minutes">Set (menit):</label>
+      <input type="number" id="minutes" min="1" max="180" placeholder="5">
+    </div>
+
+    <div class="timer-display" id="display">00:00</div>
+
+    <div class="controls">
+      <button class="start" onclick="startTimer()">Start</button>
+      <button class="pause" onclick="pauseTimer()">Pause</button>
+      <button class="reset" onclick="resetTimer()">Reset</button>
+    </div>
+  </main>
+
+  <footer>
+    <nav class="navbar">
+      <a href="timer.html" class="active">
+        <i class="fa-solid fa-stopwatch"></i>
+        <span>Timer</span>
+      </a>
+      <a href="reminder.html">
+        <i class="fa-solid fa-bell"></i>
+        <span>Pengingat</span>
+      </a>
+      <a href="notes.html">
+        <i class="fa-solid fa-note-sticky"></i>
+        <span>Catatan</span>
+      </a>
+    </nav>
+  </footer>
+
+  <script>
+    let countdown;
+    let remainingTime = 0;
+
+    function startTimer() {
+      const inputMinutes = document.getElementById('minutes').value;
+      if (inputMinutes && remainingTime === 0) {
+        remainingTime = inputMinutes * 60;
+      }
+
+      if (remainingTime > 0 && !countdown) {
+        countdown = setInterval(() => {
+          remainingTime--;
+          updateDisplay();
+          if (remainingTime <= 0) {
+            clearInterval(countdown);
+            countdown = null;
+            alert("Waktu Habis!");
+          }
+        }, 1000);
+      }
+    }
+
+    function pauseTimer() {
+      clearInterval(countdown);
+      countdown = null;
+    }
+
+    function resetTimer() {
+      clearInterval(countdown);
+      countdown = null;
+      remainingTime = 0;
+      document.getElementById('display').textContent = "00:00";
+      document.getElementById('minutes').value = "";
+    }
+
+    function updateDisplay() {
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+      document.getElementById('display').textContent =
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+  </script>
+</body>
+</html>
